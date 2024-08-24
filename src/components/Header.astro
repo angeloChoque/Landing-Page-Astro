@@ -1,0 +1,26 @@
+---
+interface props {
+  Title: string;
+  Text: string;
+}
+const { Title, Text } = Astro.props as props;
+//grow en tailwind es que si tiene espacio crezca y ocupe la pantalla
+//flex-wrap en tailwind es que si ni tiene espacio que seda para abajo
+//basis-1/4 o 1/2 es como grid que es la cuarta parte de la pantalla y la mitad y se puede usar sm:,lg:,xl:
+---
+
+<header class="flex justify-around items-center py-3 w-full">
+  <div class="space-x-5">
+    <button> Spanish </button>
+    <button> English </button>
+  </div>
+  <navbar class="flex">
+    <h2>{Title}</h2>
+    <p>{Text}</p>
+  </navbar>
+  <div class="flex space-x-5">
+    <button> Dark </button>
+    <button> light </button>
+  </div>
+</header>
+
