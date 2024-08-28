@@ -11,8 +11,18 @@ const THEMES = ["Light", "Dark", "System"];
   >
     <span class="sr-only">Elige el tema</span>
     <Icon id="lightIcon" name="light" size={16} class="theme-toggle-icon" />
-    <Icon id="darkIcon" name="dark" size={16} class="theme-toggle-icon hidden" />
-    <Icon id="systemIcon" name="semiCircle" size={16} class="theme-toggle-icon hidden" />
+    <Icon
+      id="darkIcon"
+      name="dark"
+      size={16}
+      class="theme-toggle-icon hidden"
+    />
+    <Icon
+      id="systemIcon"
+      name="semiCircle"
+      size={16}
+      class="theme-toggle-icon hidden"
+    />
   </button>
 
   <div
@@ -20,14 +30,16 @@ const THEMES = ["Light", "Dark", "System"];
     class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
   >
     <ul>
-      {THEMES.map((theme) => (
-        <li
-          class="themes-menu-option px-2 py-1.5 cursor-pointer hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
-          data-theme={theme.toLowerCase()}
-        >
-          {theme}
-        </li>
-      ))}
+      {
+        THEMES.map((theme) => (
+          <li
+            class="themes-menu-option px-2 py-1.5 cursor-pointer hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
+            data-theme={theme.toLowerCase()}
+          >
+            {theme}
+          </li>
+        ))
+      }
     </ul>
   </div>
 </div>
@@ -56,53 +68,57 @@ const THEMES = ["Light", "Dark", "System"];
 </style>
 
 <script is:inline>
-  const themesMenu = document.getElementById("themes-menu");
-  const themeToggleButton = document.getElementById("theme-toggle-btn");
+  (() => {
+    const themesMenu = document.getElementById("themes-menu");
+    const themeToggleButton = document.getElementById("theme-toggle-btn");
 
-  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
-  const themeIcons = {
-    light: document.getElementById("lightIcon"),
-    dark: document.getElementById("darkIcon"),
-    system: document.getElementById("systemIcon")
-  };
+    const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    const themeIcons = {
+      light: document.getElementById("lightIcon"),
+      dark: document.getElementById("darkIcon"),
+      system: document.getElementById("systemIcon"),
+    };
 
-  const getThemePreference = () => {
-    return localStorage.getItem("theme") || "system";
-  };
+    const getThemePreference = () => {
+      return localStorage.getItem("theme") || "system";
+    };
 
-  const updateIcon = (themePreference) => {
-    for (let [theme, icon] of Object.entries(themeIcons)) {
-      icon.classList.toggle("hidden", theme !== themePreference);
-    }
-  };
+    const updateIcon = (themePreference) => {
+      for (let [theme, icon] of Object.entries(themeIcons)) {
+        icon.classList.toggle("hidden", theme !== themePreference);
+      }
+    };
 
-  const updateTheme = () => {
-    const themePreference = getThemePreference();
-    const isDark = themePreference === "dark" || (themePreference === "system" && matchMedia.matches);
+    const updateTheme = () => {
+      const themePreference = getThemePreference();
+      const isDark =
+        themePreference === "dark" ||
+        (themePreference === "system" && matchMedia.matches);
 
-    document.documentElement.classList.toggle("dark", isDark);
-    updateIcon(themePreference);
-  };
+      document.documentElement.classList.toggle("dark", isDark);
+      updateIcon(themePreference);
+    };
 
-  themeToggleButton.addEventListener("click", (e) => {
-    e.stopPropagation();
-    themesMenu.classList.toggle("open");
-  });
+    themeToggleButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      themesMenu.classList.toggle("open");
+    });
 
-  document.querySelectorAll(".themes-menu-option").forEach((option) => {
-    option.addEventListener("click", (e) => {
-      const theme = e.currentTarget.dataset.theme;
-      localStorage.setItem("theme", theme);
-      updateTheme();
+    document.querySelectorAll(".themes-menu-option").forEach((option) => {
+      option.addEventListener("click", (e) => {
+        const theme = e.currentTarget.dataset.theme;
+        localStorage.setItem("theme", theme);
+        updateTheme();
+        themesMenu.classList.remove("open");
+      });
+    });
+
+    document.addEventListener("click", () => {
       themesMenu.classList.remove("open");
     });
-  });
 
-  document.addEventListener("click", () => {
-    themesMenu.classList.remove("open");
-  });
+    matchMedia.addEventListener("change", updateTheme);
 
-  matchMedia.addEventListener("change", updateTheme);
-
-  updateTheme(); 
+    updateTheme();
+  })();
 </script>

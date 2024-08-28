@@ -1,8 +1,9 @@
 ---
+import ProjectApi from "@/components/ProjectApi.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
 
-const badge = [
+const BADGE = [
   {
     name: "LinkendIn",
     file: "linkendin",
@@ -21,25 +22,28 @@ const badge = [
 ];
 ---
 
-<BaseLayout title="Home">
-  <main class="px-4 py-24 text-center space-y-20">
-    <section class="max-w-xl m-auto mt-10 mb-28 text-center">
+<BaseLayout
+  title="Page Practice Astro - Landing Page"
+  description="Here you will find all the information about this project "
+>
+  <main id="home" class="px-10 py-24">
+    <section class="container max-w-xl m-auto mt-5 mb-28 text-center">
       <h1
-        class="text-5xl pb-10 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#d83333] to-[#f041ff]"
+        class="text-4xl sm:text-5xl pb-5 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#d83333] to-[#f041ff]"
       >
-        PROJECT ASTRO
+        PROJECT IN ASTRO
       </h1>
       <p class="mt-6 text-xl">
-        In this project made with Astro, I aim to showcase <strong
-          class="text-[#fef08a]"
-        >
-          all my projects
+        In this project, I will demonstrate how to effectively implement Astro
+        as a static site generator while exploring key ways to integrate dynamic
+        functionalities. My goal is to build a strong foundation
+        <strong class="text-[#fef08a]">
+          by combining Astro with other important web technologies.
         </strong>
-        that I can create with this framework and practice for my individual project.
       </p>
       <nav class="flex items-center my-8 space-x-4 justify-center">
         {
-          badge.map((title) => {
+          BADGE.map((title) => {
             return (
               <a
                 href={title.link}
@@ -55,53 +59,38 @@ const badge = [
         }
       </nav>
     </section>
-    <section class="max-w-4xl m-auto text-left">
+    <section id="api" class="max-w-4xl pt-16 m-auto text-left">
       <h2
-        class="text-4xl pb-10 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#d83333] to-[#f041ff] text-center"
+        class="text-3xl sm:text-4xl pb-10 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#d83333] to-[#f041ff] text-center"
       >
-        PROJECTS
+        PROJECT API OPENDOTA2
       </h2>
-      <article class="mt-10 space-y-8 group">
-        <div class="w-full flex flex-col md:flex-row md:space-x-8">
-          <div
-            class="relative flex flex-col items-center col-span-6 row-span-5 mb-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50"
-          >
-            <img
-              alt="Recién llegado vs 5 años en Nueva Zelanda"
-              class="object-cover w-auto h-full max-h-64 md:max-h-80 transition duration-500 md:scale-110 md:group-hover:scale-105"
-              loading="lazy"
-              src="/imagen_leon.jpg"
-            />
-          </div>
-          <div class="w-full md:w-1/2">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-              Project Description
-            </h3>
-            <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              This is a description of the project, highlighting the main goals
-              and the impact it has had.
-            </p>
-            <div class="flex flex-wrap mt-4">
-              <ul class="flex flex-row gap-2">
-                <li>
-                  <span
-                    class="flex gap-x-2 rounded-full text-xs py-1 px-2 bg-gray-100 dark:bg-gray-700"
-                  >
-                    Tag 1
-                  </span>
-                </li>
-                <li>
-                  <span
-                    class="flex gap-x-2 rounded-full text-xs py-1 px-2 bg-gray-100 dark:bg-gray-700"
-                  >
-                    Tag 2
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </article>
+      <p class="mb-20 text-xl">
+        Here we are
+        <strong class="text-[#fef08a]"> using a Dota 2 character API </strong>
+        in which we will display data about them and it can also be used for other
+        types of use.
+      </p>
+      <h3
+        class="text-3xl mb-5 bg-clip-text text-transparent bg-gradient-to-r from-[#d83333] to-[#f041ff]"
+      >
+        HEROES:
+      </h3>
+      <ProjectApi />
+      <p class="text-xl my-20">
+        Here is an example of how to apply the open dota api in your astro
+        project or any other using Javascript
+      </p>
+      <iframe
+        src="https://www.youtube.com/embed/mOK0jVu5K_A"
+        class="w-full aspect-video"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture "
+        allowfullscreen
+        sandbox="allow-scripts allow-same-origin"></iframe>
+    </section>
+    <section id="api2" class="max-w-4xl pt-16 m-auto text-left">
+      <h4 class="text-xl">sdsad</h4>
     </section>
   </main>
 </BaseLayout>

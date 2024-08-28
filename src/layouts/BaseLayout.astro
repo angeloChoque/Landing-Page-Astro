@@ -18,7 +18,7 @@ const Props: props = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
@@ -32,9 +32,40 @@ const Props: props = Astro.props;
     dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
     </div>
-    <Header />
     <ViewTransitions />
+    <Header />
     <slot />
   </body>
-  
+
+  <script is:inline>
+    const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const getThemePreference = () => {
+      return localStorage.getItem("theme") || "system";
+    };
+
+    const updateTheme = () => {
+      const themePreference = getThemePreference();
+      const isDark =
+        themePreference === "dark" ||
+        (themePreference === "system" && matchMedia.matches);
+
+      document.documentElement.classList.toggle("dark", isDark);
+    };
+
+    document.addEventListener("astro:page-load", () => {
+      updateTheme();
+    });
+
+    updateTheme();
+
+    matchMedia.addEventListener("change", updateTheme);
+  </script>
 </html>
+
+<style is:global>
+  html {
+    font-family: "Onest Variable", system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+</style>
