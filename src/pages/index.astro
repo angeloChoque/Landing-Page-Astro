@@ -1,4 +1,5 @@
 ---
+import NasaApi from "@/components/NasaApi.astro";
 import ProjectApi from "@/components/ProjectApi.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
@@ -26,7 +27,7 @@ const BADGE = [
   title="Page Practice Astro - Landing Page"
   description="Here you will find all the information about this project "
 >
-  <main id="home" class="px-10 py-24">
+  <main id="home" class="px-8 md:px-0 py-24">
     <section class="container max-w-xl m-auto mt-5 mb-28 text-center">
       <h1
         class="text-4xl sm:text-5xl pb-5 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#d83333] to-[#f041ff]"
@@ -59,11 +60,11 @@ const BADGE = [
         }
       </nav>
     </section>
-    <section id="api" class="max-w-4xl pt-16 m-auto text-left">
+    <section id="api" class="max-w-4xl pt-16 m-auto">
       <h2
         class="text-3xl sm:text-4xl pb-10 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#d83333] to-[#f041ff] text-center"
       >
-        PROJECT API OPENDOTA2
+        API OPENDOTA2
       </h2>
       <p class="mb-20 text-xl">
         Here we are
@@ -89,8 +90,18 @@ const BADGE = [
         allowfullscreen
         sandbox="allow-scripts allow-same-origin"></iframe>
     </section>
-    <section id="api2" class="max-w-4xl pt-16 m-auto text-left">
-      <h4 class="text-xl">sdsad</h4>
+    <section id="api2" class="pt-8 m-auto">
+      <h2
+        class="text-3xl sm:text-4xl py-10 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#d83333] to-[#f041ff] text-center"
+      >
+        API NASA
+      </h2>
+      <p class="pb-20 max-w-4xl text-xl m-auto">
+        Here you will find an example using the to project
+        <strong class="text-[#fef08a]"> astronomical image of the day </strong>
+        , in which we see the photo and description in the middle.
+      </p>
+      <NasaApi />
     </section>
   </main>
 </BaseLayout>
