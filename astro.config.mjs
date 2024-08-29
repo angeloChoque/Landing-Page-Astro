@@ -4,6 +4,8 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://angeloChoquet.github.io",
+  base: "Landing-Page-Astro",
   integrations: [
     tailwind(),
     icon({
