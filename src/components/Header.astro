@@ -1,6 +1,6 @@
 ---
+import ButtonMode from "./ButtonMode";
 import ThemeToggle from "./ThemeToggle.astro";
-
 const navItems = [
   {
     title: "About",
@@ -42,7 +42,8 @@ const navItems = [
         </a>
       ))
     }
-    <ThemeToggle />
+    <!-- <ThemeToggle /> -->
+    <ButtonMode client:only="react" />
   </nav>
 </header>
 
@@ -75,7 +76,6 @@ const navItems = [
       observer.observe(section);
     });
 
-    // Cleanup function
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
         observer.disconnect();
