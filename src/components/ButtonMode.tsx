@@ -93,7 +93,7 @@ export default function ButtonMode() {
         sx={{
           all: "unset",
           cursor: "pointer",
-          mx: 1,
+          mx: 2,
           "&:hover": {
             transform: "scale(1.25)",
           },
